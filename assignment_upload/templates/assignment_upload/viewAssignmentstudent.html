@@ -1,0 +1,320 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#	<center>#}
+{#<table border="1">#}
+{#	<h1>View Assignments Teacher</h1>#}
+{#	<tr>#}
+{#		<th>Assignment Name</th>#}
+{#		<th>Assignment Subject</th>#}
+{#		<th>uploaded assignment</th>#}
+{#        <th>grade</th>#}
+{##}
+{#	</tr>#}
+{#    {% for i in bb %}#}
+{#	<tr>#}
+{#		<td>{{ i.assignment_id }}</td>#}
+{#		<td>{{ i.assignment_id }}</td>#}
+{#		<td>{{ i.upload_assignment }}</td>#}
+{#         <td><a href="/assignment_upload/grade/{{ i.fn_id }}">grade</a></td>#}
+{##}
+{#	</tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</center>#}
+{#</body>#}
+{#</html>#}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#  <title>View Assignments Teacher</title>#}
+{#  <style>#}
+{#    body {#}
+{#      font-family: Arial, sans-serif;#}
+{#      margin: 0;#}
+{#      padding: 0;#}
+{#      background: #ffffff;#}
+{#      display: flex;#}
+{#      justify-content: center;#}
+{#      align-items: center;#}
+{#      min-height: 100vh;#}
+{#      position: relative;#}
+{#    }#}
+{##}
+{#    /* Back to Home button */#}
+{#    .back-button {#}
+{#      position: fixed;#}
+{#      top: 20px;#}
+{#      right: 20px;#}
+{#      background: rgba(0,123,255,0.2);#}
+{#      color: #007BFF;#}
+{#      border: 2px solid #007BFF;#}
+{#      text-decoration: none;#}
+{#      padding: 10px 20px;#}
+{#      border-radius: 50px;#}
+{#      font-weight: bold;#}
+{#      transition: 0.3s;#}
+{#      z-index: 10;#}
+{#    }#}
+{#    .back-button:hover {#}
+{#      background: rgba(0,123,255,0.4);#}
+{#    }#}
+{##}
+{#    /* Glassy table container */#}
+{#    .table-container {#}
+{#      width: 90%;#}
+{#      max-width: 1000px;#}
+{#      padding: 30px 40px;#}
+{#      border-radius: 20px;#}
+{#      background: rgba(0,123,255,0.05);#}
+{#      backdrop-filter: blur(10px);#}
+{#      box-shadow: 0 8px 32px rgba(0,0,0,0.1);#}
+{#      position: relative;#}
+{#      overflow: hidden;#}
+{#      margin-top: 60px;#}
+{#    }#}
+{##}
+{#    /* Decorative floating shapes */#}
+{#    .shape {#}
+{#      position: absolute;#}
+{#      border-radius: 50%;#}
+{#      opacity: 0.15;#}
+{#      z-index: 0;#}
+{#      animation: float 12s ease-in-out infinite alternate;#}
+{#    }#}
+{#    .shape1 { width: 150px; height: 150px; background: #007BFF; top: -50px; left: -50px; animation-duration: 12s; }#}
+{#    .shape2 { width: 100px; height: 100px; background: #00d4ff; bottom: -30px; right: -30px; animation-duration: 15s; }#}
+{##}
+{#    @keyframes float {#}
+{#      0% { transform: translateY(0px) translateX(0px); }#}
+{#      50% { transform: translateY(20px) translateX(10px); }#}
+{#      100% { transform: translateY(0px) translateX(0px); }#}
+{#    }#}
+{##}
+{#    h1 {#}
+{#      text-align: center;#}
+{#      color: #007BFF;#}
+{#      margin-bottom: 30px;#}
+{#    }#}
+{##}
+{#    table {#}
+{#      border-collapse: collapse;#}
+{#      width: 100%;#}
+{#      position: relative;#}
+{#    }#}
+{##}
+{#    th, td {#}
+{#      padding: 12px 20px;#}
+{#      text-align: left;#}
+{#      border-bottom: 1px solid rgba(0,123,255,0.3);#}
+{#      color: #000;#}
+{#    }#}
+{##}
+{#    th {#}
+{#      background: rgba(0,123,255,0.7);#}
+{#      color: white;#}
+{#      border-radius: 10px;#}
+{#    }#}
+{##}
+{#    tr:hover {#}
+{#      background: rgba(0,123,255,0.1);#}
+{#      transform: scale(1.02);#}
+{#      transition: 0.3s;#}
+{#    }#}
+{##}
+{#    a.grade-link {#}
+{#      text-decoration: none;#}
+{#      color: #ffffff;#}
+{#      background: #007BFF;#}
+{#      padding: 5px 15px;#}
+{#      border-radius: 20px;#}
+{#      transition: 0.3s;#}
+{#    }#}
+{##}
+{#    a.grade-link:hover {#}
+{#      background: #0056b3;#}
+{#    }#}
+{##}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#  <a href="/temp/student/" class="back-button">Back to Home</a>#}
+{##}
+{#  <div class="table-container">#}
+{#    <div class="shape shape1"></div>#}
+{#    <div class="shape shape2"></div>#}
+{##}
+{#    <h1>View Assignments uploded by student</h1>#}
+{#    <table border="1">#}
+{#      <tr>#}
+{#        <th>Assignment Name</th>#}
+{#        <th>Assignment Subject</th>#}
+{#        <th>Uploaded Assignment</th>#}
+{#        <th>Grade</th>#}
+{#      </tr>#}
+{#      {% for i in bb %}#}
+{#      <tr>#}
+{#        <td>{{ i.assignment_id }}</td>#}
+{#        <td>{{ i.assignment_id }}</td>#}
+{#        <td>{{ i.upload_assignment }}</td>#}
+{#        <td><a href="/assignment_upload/grade/{{ i.fn_id }}" class="grade-link">Grade</a></td>#}
+{#      </tr>#}
+{#      {% endfor %}#}
+{#    </table>#}
+{#  </div>#}
+{##}
+{#</body>#}
+{#</html>#}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Assignments - Teacher</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+
+    /* Back Button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffffff;
+      color: #007BFF;
+      border: 1px solid #007BFF;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .back-button:hover {
+      background: #007BFF;
+      color: white;
+    }
+
+    /* Container */
+    .table-container {
+      width: 100%;
+      max-width: 1000px;
+      padding: 30px;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #007BFF;
+      color: white;
+      padding: 14px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #e3edf8;
+      font-size: 14px;
+    }
+
+    tr:hover {
+      background: #f0f7ff;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #007BFF;
+      background: #e6f2ff;
+      border: 1px solid #007BFF;
+      transition: 0.2s;
+    }
+
+    .download-btn img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .download-btn:hover {
+      background: #007BFF;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+<a href="/temp/student/" class="back-button">← Back to Home</a>
+
+<div class="table-container">
+
+  <h1>View Assignments Uploaded by Students</h1>
+
+  <table>
+    <tr>
+      <th>Assignment Name</th>
+      <th>Assignment Subject</th>
+      <th>Uploaded File</th>
+        <th>edit</th>
+    </tr>
+
+    {% for i in bb %}
+    <tr>
+      <!-- Adjust these fields based on your model -->
+      <td>{{ i.assignment.assignment_name }}</td>
+      <td>{{ i.assignment.assignment_subject }}</td>
+
+      <td>
+        <a href="/static/{{ i.upload_assignment }}"
+           download
+           class="download-btn">
+          <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="File">
+          Download
+        </a>
+      </td>
+    <td><a href="/assignment_upload/edit_assignment/{{ i.fn_id}}" class="reply-link">edit</a></td>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+</div>
+
+</body>
+</html>

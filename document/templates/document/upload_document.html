@@ -1,0 +1,199 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#  <title>Upload document</title>#}
+{#</head>#}
+{#<body>#}
+{#  <form method="post" >#}
+{#      {% csrf_token %}#}
+{#    <center>#}
+{#      <h1>Upload document</h1>#}
+{#      <table>#}
+{#        <tr>#}
+{#          <td>Subject Name:</td>#}
+{#          <td><input type="text" name="subjectname" required></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>topic Name:</td>#}
+{#          <td><input type="text" name="topicname" required></td>#}
+{#        </tr>#}
+{#        #}
+{##}
+{#        <tr>#}
+{#          <td>Upload document:</td>#}
+{#          <td><input type="file" name="Uploaddocument" accept=".pdf,.doc,.docx,.txt"></td>#}
+{#        </tr>#}
+{##}
+{#        #}
+{##}
+{#        <tr>#}
+{#          <td></td>#}
+{#          <td>#}
+{#            <input type="submit" value="Submit">#}
+{#            <input type="reset" value="Reset">#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </center>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Back to Home button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,123,255,0.2);
+      color: #007BFF;
+      border: 2px solid #007BFF;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: 0.3s;
+      z-index: 10;
+    }
+    .back-button:hover {
+      background: rgba(0,123,255,0.4);
+    }
+
+    /* Glassy form container */
+    .form-container {
+      width: 90%;
+      max-width: 600px;
+      padding: 40px 50px;
+      border-radius: 20px;
+      background: rgba(0,123,255,0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative floating shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      z-index: 0;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+    .shape1 { width: 150px; height: 150px; background: #007BFF; top: -50px; left: -50px; animation-duration: 12s; }
+    .shape2 { width: 100px; height: 100px; background: #00d4ff; bottom: -30px; right: -30px; animation-duration: 15s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(20px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      padding: 10px 0;
+      color: #000;
+      vertical-align: top;
+    }
+
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid rgba(0,123,255,0.5);
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      background: rgba(255,255,255,0.5);
+      transition: 0.3s;
+      backdrop-filter: blur(5px);
+    }
+
+    input[type="text"]:focus,
+    input[type="file"]:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 10px rgba(0,123,255,0.3);
+      background: rgba(255,255,255,0.8);
+    }
+
+    input[type="submit"], input[type="reset"] {
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: 2px solid #007BFF;
+      background: rgba(0,123,255,0.2);
+      color: #007BFF;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background: rgba(0,123,255,0.4);
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+
+  <a href="/temp/teacher/" class="back-button">Back to Home</a>
+
+  <div class="form-container">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h1>Upload Document</h1>
+      <table>
+        <tr>
+          <td>Subject Name:</td>
+          <td><input type="text" name="subjectname" required></td>
+        </tr>
+        <tr>
+          <td>Topic Name:</td>
+          <td><input type="text" name="topicname" required></td>
+        </tr>
+        <tr>
+          <td>Upload Document:</td>
+          <td><input type="file" name="Uploaddocument" accept=".pdf,.doc,.docx,.txt"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+</body>
+</html>
+

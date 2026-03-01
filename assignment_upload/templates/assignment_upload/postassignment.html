@@ -1,0 +1,456 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#  <title>post assignment</title>#}
+{#</head>#}
+{#<body>#}
+{#  <form method="post">#}
+{#      {% csrf_token %}<!-- Added action -->#}
+{#    <center>#}
+{#      <h1>post assignment</h1>#}
+{#      <table>#}
+{#        <tr>#}
+{#          <td>Assignment Name</td>#}
+{#          <td><input type="text" name="assignmentname" required></td>#}
+{#        </tr>#}
+{#         #}
+{#        <tr>#}
+{#          <td>Assignment Subject</td>#}
+{#          <td><input type="text" name="assignmentsubject" required></td>#}
+{#        </tr>#}
+{#         <tr>#}
+{#                    <td>Upload Assignment</td>#}
+{#                    <td><input type="file" id="assignment" name="assignment" accept=".pdf,.doc,.docx,.txt" required></td>#}
+{#                </tr>#}
+{##}
+{#        <tr>#}
+{#          <td></td>#}
+{#          <td>#}
+{#            <input type="submit" value="Submit">#}
+{#            <input type="reset" value="Reset">#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </center>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#  <title>Post Assignment</title>#}
+{#  <style>#}
+{#    body {#}
+{#      font-family: Arial, sans-serif;#}
+{#      margin: 0;#}
+{#      padding: 0;#}
+{#      background: #ffffff;#}
+{#      display: flex;#}
+{#      justify-content: center;#}
+{#      align-items: center;#}
+{#      min-height: 100vh;#}
+{#      position: relative;#}
+{#    }#}
+{##}
+{#    /* Back to Home button */#}
+{#    .back-button {#}
+{#      position: fixed;#}
+{#      top: 20px;#}
+{#      right: 20px;#}
+{#      background: rgba(0,123,255,0.2);#}
+{#      color: #007BFF;#}
+{#      border: 2px solid #007BFF;#}
+{#      text-decoration: none;#}
+{#      padding: 10px 20px;#}
+{#      border-radius: 50px;#}
+{#      font-weight: bold;#}
+{#      transition: 0.3s;#}
+{#      z-index: 10;#}
+{#    }#}
+{#    .back-button:hover {#}
+{#      background: rgba(0,123,255,0.4);#}
+{#    }#}
+{##}
+{#    /* Glassy form container */#}
+{#    .form-container {#}
+{#      width: 90%;#}
+{#      max-width: 500px;#}
+{#      padding: 40px 50px;#}
+{#      border-radius: 20px;#}
+{#      background: rgba(0,123,255,0.05);#}
+{#      backdrop-filter: blur(10px);#}
+{#      box-shadow: 0 8px 32px rgba(0,0,0,0.1);#}
+{#      position: relative;#}
+{#      overflow: hidden;#}
+{#    }#}
+{##}
+{#    /* Decorative floating shapes */#}
+{#    .shape {#}
+{#      position: absolute;#}
+{#      border-radius: 50%;#}
+{#      opacity: 0.15;#}
+{#      z-index: 0;#}
+{#      animation: float 12s ease-in-out infinite alternate;#}
+{#    }#}
+{#    .shape1 { width: 150px; height: 150px; background: #007BFF; top: -50px; left: -50px; animation-duration: 12s; }#}
+{#    .shape2 { width: 100px; height: 100px; background: #00d4ff; bottom: -30px; right: -30px; animation-duration: 15s; }#}
+{##}
+{#    @keyframes float {#}
+{#      0% { transform: translateY(0px) translateX(0px); }#}
+{#      50% { transform: translateY(20px) translateX(10px); }#}
+{#      100% { transform: translateY(0px) translateX(0px); }#}
+{#    }#}
+{##}
+{#    h1 {#}
+{#      text-align: center;#}
+{#      color: #007BFF;#}
+{#      margin-bottom: 30px;#}
+{#    }#}
+{##}
+{#    table {#}
+{#      width: 100%;#}
+{#    }#}
+{##}
+{#    td {#}
+{#      padding: 10px 0;#}
+{#      color: #000;#}
+{#    }#}
+{##}
+{#    input[type="text"], input[type="file"] {#}
+{#      width: 100%;#}
+{#      padding: 10px 15px;#}
+{#      border: 1px solid rgba(0,123,255,0.5);#}
+{#      border-radius: 10px;#}
+{#      font-size: 16px;#}
+{#      outline: none;#}
+{#      background: rgba(255,255,255,0.5);#}
+{#      transition: 0.3s;#}
+{#      backdrop-filter: blur(5px);#}
+{#    }#}
+{##}
+{#    input[type="text"]:focus,#}
+{#    input[type="file"]:focus {#}
+{#      border-color: #007BFF;#}
+{#      box-shadow: 0 0 10px rgba(0,123,255,0.3);#}
+{#      background: rgba(255,255,255,0.8);#}
+{#    }#}
+{##}
+{#    input[type="submit"], input[type="reset"] {#}
+{#      padding: 10px 20px;#}
+{#      border-radius: 50px;#}
+{#      border: 2px solid #007BFF;#}
+{#      background: rgba(0,123,255,0.2);#}
+{#      color: #007BFF;#}
+{#      cursor: pointer;#}
+{#      font-size: 16px;#}
+{#      margin-right: 10px;#}
+{#      transition: 0.3s;#}
+{#    }#}
+{##}
+{#    input[type="submit"]:hover,#}
+{#    input[type="reset"]:hover {#}
+{#      background: rgba(0,123,255,0.4);#}
+{#      transform: scale(1.05);#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#  <a href="/temp/student" class="back-button">Back to Home</a>#}
+{##}
+{#  <div class="form-container">#}
+{#    <div class="shape shape1"></div>#}
+{#    <div class="shape shape2"></div>#}
+{##}
+{#    <form method="post" enctype="multipart/form-data">#}
+{#      {% csrf_token %}#}
+{#      <h1>Post Assignment</h1>#}
+{#      <table>#}
+{#        <tr>#}
+{#          <td>Assignment </td>#}
+{#            <td><select name="assignment_name">#}
+{#                {% for i in k %}#}
+{#                <option value="{{ i.assignment_id }}">{{ i.assignment_name }}</option>#}
+{#                {% endfor %}#}
+{#            </select>#}
+{#        </tr>#}
+{#        <tr>#}
+{#        <tr>#}
+{#          <td>Upload Assignment</td>#}
+{#          <td><input type="file" id="assignment" name="aaa" accept=".pdf,.doc,.docx,.txt" required></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td></td>#}
+{#          <td>#}
+{#            <input type="submit" value="Submit">#}
+{#            <input type="reset" value="Reset">#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </form>#}
+{#  </div>#}
+{##}
+{#</body>#}
+{#</html>#}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post Assignment</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Back to Home button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,123,255,0.2);
+      color: #007BFF;
+      border: 2px solid #007BFF;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: 0.3s;
+      z-index: 10;
+    }
+
+    .back-button:hover {
+      background: rgba(0,123,255,0.4);
+    }
+
+    /* Glassy form container */
+    .form-container {
+      width: 90%;
+      max-width: 500px;
+      padding: 40px 50px;
+      border-radius: 20px;
+      background: rgba(0,123,255,0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.8s ease;
+    }
+
+    /* Decorative floating shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      z-index: 0;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .shape1 {
+      width: 150px;
+      height: 150px;
+      background: #007BFF;
+      top: -50px;
+      left: -50px;
+    }
+
+    .shape2 {
+      width: 100px;
+      height: 100px;
+      background: #00d4ff;
+      bottom: -30px;
+      right: -30px;
+      animation-duration: 15s;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(20px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    /* Fade animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    td {
+      padding: 10px 0;
+      color: #000;
+    }
+
+    /* Inputs */
+    input[type="text"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid rgba(0,123,255,0.5);
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      background: rgba(255,255,255,0.6);
+      transition: 0.3s;
+      backdrop-filter: blur(5px);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 10px rgba(0,123,255,0.3);
+      background: rgba(255,255,255,0.9);
+    }
+
+    /* File button */
+    input[type="file"]::file-selector-button {
+      background: rgba(0,123,255,0.2);
+      border: 2px solid #007BFF;
+      color: #007BFF;
+      padding: 8px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: 0.3s;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+      background: rgba(0,123,255,0.4);
+      transform: scale(1.05);
+    }
+
+    /* Buttons */
+    input[type="submit"],
+    input[type="reset"] {
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: 2px solid #007BFF;
+      background: rgba(0,123,255,0.2);
+      color: #007BFF;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background: rgba(0,123,255,0.4);
+      transform: scale(1.05);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #e6f2ff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #007BFF;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0056b3;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      input[type="submit"],
+      input[type="reset"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .back-button {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <a href="/temp/student" class="back-button">Back to Home</a>
+
+  <div class="form-container">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <h1>Post Assignment</h1>
+
+      <table>
+        <tr>
+          <td>Assignment</td>
+          <td>
+            <select name="assignment_name">
+              {% for i in k %}
+              <option value="{{ i.assignment_id }}">{{ i.assignment_name }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Upload Assignment</td>
+          <td>
+            <input type="file" id="assignment" name="aaa"
+                   accept=".pdf,.doc,.docx,.txt" required>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+          </td>
+        </tr>
+      </table>
+
+    </form>
+  </div>
+
+</body>
+</html>

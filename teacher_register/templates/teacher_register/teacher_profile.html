@@ -1,0 +1,254 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#	<center>#}
+{#<table border="1">#}
+{#	<h1>View Teacher</h1>#}
+{#	<tr>#}
+{#		<th>Name</th>#}
+{#		<th>username</th>#}
+{#		<th>subject</th>#}
+{#		<th>contact</th>#}
+{#		<th>email</th>#}
+{#	</tr>#}
+{#    {% for i in aa %}#}
+{#	<tr>#}
+{#		<td>{{ i.name }}</td>#}
+{#		<td>{{ i.username }}</td>#}
+{#		<td>{{ i.subject }}</td>#}
+{#		<td>{{ i.contact }}</td>#}
+{#		<td>{{ i.email }}</td>#}
+{#	</tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</center></center>#}
+{##}
+{#</body>#}
+{#</html>#}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teacher Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Profile Card */
+    .profile-card {
+      width: 100%;
+      max-width: 700px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,123,255,0.15);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Header with blue background */
+    .profile-header {
+      background: #007BFF;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      border: 3px solid rgba(255,255,255,0.5);
+    }
+
+    .avatar svg {
+      width: 50px;
+      height: 50px;
+      fill: #007BFF;
+    }
+
+    .teacher-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .teacher-subject {
+      font-size: 16px;
+      opacity: 0.9;
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    /* Profile Body */
+    .profile-body {
+      padding: 30px;
+    }
+
+    /* Info Sections */
+    .info-section {
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      color: #007BFF;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid rgba(0,123,255,0.1);
+    }
+
+    .info-row {
+      display: flex;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .info-label {
+      width: 100px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .info-value {
+      flex: 1;
+      color: #333;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    /* Back Button */
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 18px;
+      background: rgba(0,123,255,0.15);
+      color: #007BFF;
+      text-decoration: none;
+      border: 2px solid #007BFF;
+      border-radius: 30px;
+      font-size: 14px;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .back-home:hover {
+      background: rgba(0,123,255,0.35);
+      transform: scale(1.05);
+    }
+
+    /* Simple decorative shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.05;
+      z-index: 0;
+    }
+    .shape1 {
+      width: 200px;
+      height: 200px;
+      background: #007BFF;
+      top: -50px;
+      left: -50px;
+    }
+    .shape2 {
+      width: 150px;
+      height: 150px;
+      background: #00d4ff;
+      bottom: -50px;
+      right: -50px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .info-row {
+        flex-direction: column;
+        gap: 5px;
+      }
+      .info-label {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="/temp/teacher/" class="back-home">← Back to Home</a>
+
+  {% for i in aa %}
+    {% if forloop.first %}
+      <div class="profile-card">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+
+        <div class="profile-header">
+          <div class="avatar">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="teacher-name">{{ i.name }}</div>
+          <div class="teacher-username">@{{ i.username }}</div>
+          <div class="teacher-subject">{{ i.subject }}</div>
+        </div>
+
+        <div class="profile-body">
+          <!-- Personal Information -->
+          <div class="info-section">
+            <div class="section-title">Personal Information</div>
+            <div class="info-row">
+              <span class="info-label">Full Name</span>
+              <span class="info-value">{{ i.name }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Username</span>
+              <span class="info-value">{{ i.username }}</span>
+            </div>
+          </div>
+
+          <!-- Professional Information -->
+          <div class="info-section">
+            <div class="section-title">Professional Information</div>
+            <div class="info-row">
+              <span class="info-label">Subject</span>
+              <span class="info-value">{{ i.subject }}</span>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="info-section">
+            <div class="section-title">Contact Information</div>
+            <div class="info-row">
+              <span class="info-label">Phone</span>
+              <span class="info-value">{{ i.contact }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email</span>
+              <span class="info-value">{{ i.email }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</body>
+</html>

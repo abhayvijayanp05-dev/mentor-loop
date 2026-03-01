@@ -1,0 +1,355 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#  <title>Student Registration</title>#}
+{#</head>#}
+{#<body>#}
+{#  <form method="post">#}
+{#      {% csrf_token %}<!-- Added action -->#}
+{#    <center>#}
+{#      <h1>Register Student</h1>#}
+{#      <table>#}
+{#        <tr>#}
+{#          <td>Name</td>#}
+{#          <td><input type="text" name="studentname" required></td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td>Username</td>#}
+{#          <td><input type="text" name="susername" required></td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td>Department</td>#}
+{#          <td>#}
+{#            <select id="department" name="department" required>#}
+{#              <option value="">--Select Department--</option>#}
+{#              <option value="bsccs">BSc Computer Science</option>#}
+{#              <option value="bscphy">BSc Physics</option>#}
+{#              <option value="bscchem">BSc Chemistry</option>#}
+{#              <option value="bcom">BCom</option>#}
+{#            </select>#}
+{#          </td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td>Year</td>#}
+{#          <td>#}
+{#            <select id="year" name="year" required>#}
+{#              <option value="">--Select Year--</option>#}
+{#              <option value="1year">1st Year</option>#}
+{#              <option value="2year">2nd Year</option>#}
+{#              <option value="3year">3rd Year</option>#}
+{#              <option value="4year">4th Year</option>#}
+{#            </select>#}
+{#          </td>#}
+{#        </tr>#}
+{#         <tr>#}
+{#          <td>register no</td>#}
+{#          <td><input type="text" name="registerno" required></td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td>Contact</td>#}
+{#          <td><input type="tel" name="scontact" pattern="[0-9]{10}" placeholder="10-digit number" required></td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td>Email</td>#}
+{#          <td><input type="email" name="semail" required></td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td>Password</td>#}
+{#          <td><input type="password" name="spassword" required></td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td>Confirm Password</td>#}
+{#          <td><input type="password" name="cpassword" required></td>#}
+{#        </tr>#}
+{##}
+{#        <tr>#}
+{#          <td></td>#}
+{#          <td>#}
+{#            <input type="submit" value="Submit">#}
+{#            <input type="reset" value="Reset">#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </center>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .form-container {
+      width: 95%;
+      max-width: 600px;
+      padding: 40px 50px;
+      border-radius: 20px;
+      background: rgba(0,123,255,0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      z-index: 0;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .shape1 { width: 120px; height: 120px; background: #007BFF; top: -40px; left: -40px; }
+    .shape2 { width: 80px; height: 80px; background: #00d4ff; bottom: -20px; right: -20px; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(15px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    td {
+      padding: 10px 0;
+      color: #000;
+      vertical-align: top;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid rgba(0,123,255,0.5);
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      background: rgba(255,255,255,0.5);
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 10px rgba(0,123,255,0.3);
+      background: rgba(255,255,255,0.8);
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: 2px solid #007BFF;
+      background: rgba(0,123,255,0.2);
+      color: #007BFF;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background: rgba(0,123,255,0.4);
+      transform: scale(1.05);
+    }
+
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 18px;
+      background: rgba(0,123,255,0.15);
+      color: #007BFF;
+      text-decoration: none;
+      border: 2px solid #007BFF;
+      border-radius: 30px;
+      font-size: 14px;
+      backdrop-filter: blur(6px);
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .back-home:hover {
+      background: rgba(0,123,255,0.35);
+      transform: scale(1.05);
+    }
+
+    .msg {
+      font-size: 13px;
+      margin-top: 5px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="/temp/teacher/" class="back-home">← Back to Home</a>
+
+<div class="form-container">
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+
+  <form method="post" id="regForm">
+    {% csrf_token %}
+    <h1>Register Student</h1>
+
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" name="studentname" required></td>
+      </tr>
+
+      <tr>
+        <td>Username</td>
+        <td><input type="text" name="susername" required></td>
+      </tr>
+
+      <tr>
+        <td>Department</td>
+        <td>
+          <select name="department" required>
+            <option value="">--Select Department--</option>
+            <option>BSc Computer Science</option>
+            <option>BSc Physics</option>
+            <option>BSc Chemistry</option>
+            <option>BCom</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Year</td>
+        <td>
+          <select name="year" required>
+            <option value="">--Select Year--</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Register No</td>
+        <td><input type="text" name="registerno" required></td>
+      </tr>
+
+      <tr>
+        <td>Contact</td>
+        <td>
+          <input type="tel"
+            name="scontact"
+            pattern="[0-9]{10}"
+            placeholder="10-digit number"
+            required>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td><input type="email" name="semail" required></td>
+      </tr>
+
+      <!-- Password -->
+      <tr>
+        <td>Password</td>
+        <td>
+          <input type="password"
+            id="password"
+            name="spassword"
+            required
+            minlength="8"
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}"
+            title="Must contain uppercase, lowercase, number & special character">
+        </td>
+      </tr>
+
+      <!-- Confirm Password -->
+      <tr>
+        <td>Confirm Password</td>
+        <td>
+          <input type="password"
+            id="confirmPassword"
+            name="cpassword"
+            required
+            minlength="8">
+          <span id="msg" class="msg"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit" value="Submit">
+          <input type="reset" value="Reset">
+        </td>
+      </tr>
+    </table>
+
+  </form>
+</div>
+
+<!-- 🔐 Password Validation -->
+<script>
+  const form = document.getElementById("regForm");
+  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirmPassword");
+  const msg = document.getElementById("msg");
+
+  confirmPassword.addEventListener("keyup", function () {
+    if (password.value !== confirmPassword.value) {
+      msg.textContent = "❌ Password does not match";
+      msg.style.color = "red";
+    } else {
+      msg.textContent = "✅ Password matched";
+      msg.style.color = "green";
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    if (password.value !== confirmPassword.value) {
+      e.preventDefault();
+      alert("❌ Password and Confirm Password do not match!");
+      confirmPassword.focus();
+    }
+  });
+</script>
+
+</body>
+</html>
+

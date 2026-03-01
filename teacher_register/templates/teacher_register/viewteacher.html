@@ -1,0 +1,131 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#	<center>#}
+{#<table border="1">#}
+{#	<h1>View Teacher</h1>#}
+{#	<tr>#}
+{#		<th>Name</th>#}
+{#		<th>username</th>#}
+{#		<th>subject</th>#}
+{#		<th>contact</th>#}
+{#		<th>email</th>#}
+{#	</tr>#}
+{#    {% for i in aa %}#}
+{#	<tr>#}
+{#		<td>{{ i.name }}</td>#}
+{#		<td>{{ i.username }}</td>#}
+{#		<td>{{ i.subject }}</td>#}
+{#		<td>{{ i.contact }}</td>#}
+{#		<td>{{ i.email }}</td>#}
+{#	</tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</center></center>#}
+{##}
+{#</body>#}
+{#</html>#}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Teacher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      width: 90%;
+      max-width: 900px;
+      background: rgba(0,123,255,0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    tr {
+      background-color: rgba(255,255,255,0.8);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    tr:hover {
+      background-color: rgba(0,123,255,0.1);
+      transform: scale(1.02);
+    }
+      /* Back to Home Button - Top Right */
+.back-home {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 18px;
+  background: rgba(0,123,255,0.15);
+  color: #007BFF;
+  text-decoration: none;
+  border: 2px solid #007BFF;
+  border-radius: 30px;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.back-home:hover {
+  background: rgba(0,123,255,0.35);
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+<a href="/temp/admin/" class="back-home">← Back to Home</a>
+
+  <div>
+    <h1>View Teacher</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Subject</th>
+        <th>Contact</th>
+        <th>Email</th>
+      </tr>
+      {% for i in aa %}
+      <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.username }}</td>
+        <td>{{ i.subject }}</td>
+        <td>{{ i.contact }}</td>
+        <td>{{ i.email }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>

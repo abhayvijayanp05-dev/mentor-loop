@@ -1,0 +1,232 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#	<center>#}
+{#<table border="1">#}
+{#	<h1>View Assignments Teacher</h1>#}
+{#	<tr>#}
+{#		<th>Assignment Name</th>#}
+{#		<th>Assignment Subject</th>#}
+{#		<th>uploaded assignment</th>#}
+{#        <th>grade</th>#}
+{##}
+{#	</tr>#}
+{#    {% for i in bb %}#}
+{#	<tr>#}
+{#		<td>{{ i.assignment_id }}</td>#}
+{#		<td>{{ i.assignment_id }}</td>#}
+{#		<td>{{ i.upload_assignment }}</td>#}
+{#         <td><a href="/assignment_upload/grade/{{ i.fn_id }}">grade</a></td>#}
+{##}
+{#	</tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</center>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Assignments - Teacher</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 70px 20px;
+    }
+
+    /* Back Button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffffff;
+      color: #007BFF;
+      border: 2px solid #007BFF;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .back-button:hover {
+      background: #007BFF;
+      color: white;
+    }
+
+    /* Glass Container */
+    .table-container {
+      width: 100%;
+      max-width: 1050px;
+      padding: 30px 35px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #007BFF;
+      color: white;
+      padding: 14px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #e3edf8;
+      font-size: 14px;
+    }
+
+    tr:hover {
+      background: #f0f7ff;
+      transition: 0.2s;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      color: white;
+      background-color: #007BFF;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* FIXED ICON SIZE */
+    .file-icon{
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    /* Grade Button */
+    .grade-link {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      color: white;
+      background-color: #28a745;
+      transition: 0.3s;
+    }
+
+    .grade-link:hover {
+      background-color: #1e7e34;
+    }
+
+    .no-file {
+      color: #999;
+      font-style: italic;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<a href="/temp/teacher/" class="back-button">← Back to Home</a>
+
+<div class="table-container">
+
+  <h1>View Assignments Uploaded by Students</h1>
+
+  <table>
+    <tr>
+         <th>Student Name</th>
+      <th>Assignment Name</th>
+      <th>Assignment Subject</th>
+      <th>Uploaded Assignment</th>
+      <th>Grade</th>
+    </tr>
+
+    {% for i in bb %}
+    <tr>
+
+      <!-- Adjust fields as per your model -->
+    <td>{{ i.student.username}}</td>
+      <td>{{ i.assignment.assignment_name }}</td>
+      <td>{{ i.assignment.assignment_subject }}</td>
+
+      <!-- Download File -->
+      <td>
+        {% if i.upload_assignment %}
+          <a href="/static/{{ i.upload_assignment }}"
+             download
+             class="download-btn">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png"
+                 alt="File"
+                 class="file-icon">
+
+            Download
+          </a>
+        {% else %}
+          <span class="no-file">No File Uploaded</span>
+        {% endif %}
+      </td>
+
+      <!-- Grade Button -->
+      <td>
+        <a href="/assignment_upload/grade/{{ i.fn_id }}"
+           class="grade-link">
+           Grade
+        </a>
+      </td>
+
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" style="text-align:center; padding:20px;">
+        No assignments submitted yet.
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+</div>
+
+</body>
+</html>

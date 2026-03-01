@@ -1,0 +1,355 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#	<center>#}
+{#<table border="1">#}
+{#	<h1>View videos and questions</h1>#}
+{#	<tr>#}
+{#		<th>Subject Name</th>#}
+{#		<th>Topicname</th>#}
+{#		<th>Upload videos</th>#}
+{#		<th>Upload questions</th>#}
+{#	#}
+{##}
+{#	</tr>#}
+{#    {% for i in aa %}#}
+{#	<tr>#}
+{#		<td>{{ i.subjectname }}</td>#}
+{#		<td>{{ i.topicname }}</td>#}
+{#		<td>{{ i.uploadvideo }}</td>#}
+{#		<td>{{ i.uploadquestion }}</td>#}
+{##}
+{#	</tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</center>#}
+{#</body>#}
+{#</html>#}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>View Videos and Questions</title>#}
+{#    <style>#}
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            background-color: #f0f4f8;#}
+{#            margin: 0;#}
+{#            padding: 40px 0;#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#        }#}
+{##}
+{#        h1 {#}
+{#            text-align: center;#}
+{#            color: #007BFF;#}
+{#            margin-bottom: 20px;#}
+{#        }#}
+{##}
+{#        table {#}
+{#            width: 800px;#}
+{#            border-collapse: separate;#}
+{#            border-spacing: 0 10px;#}
+{#            background: rgba(255, 255, 255, 0.85);#}
+{#            backdrop-filter: blur(10px);#}
+{#            border-radius: 15px;#}
+{#            box-shadow: 0 8px 32px rgba(0,0,0,0.1);#}
+{#            padding: 20px;#}
+{#        }#}
+{##}
+{#        th, td {#}
+{#            padding: 12px 15px;#}
+{#            text-align: left;#}
+{#        }#}
+{##}
+{#        th {#}
+{#            background-color: #007BFF;#}
+{#            color: white;#}
+{#            border-radius: 8px;#}
+{#        }#}
+{##}
+{#        tr {#}
+{#            background-color: rgba(255, 255, 255, 0.9);#}
+{#            transition: 0.3s;#}
+{#        }#}
+{##}
+{#        tr:hover {#}
+{#            background-color: rgba(0,123,255,0.1);#}
+{#        }#}
+{##}
+{#        td {#}
+{#            border-bottom: 1px solid #ccc;#}
+{#        }#}
+{#        /* Back to Home Button */#}
+{#.back-home {#}
+{#    position: fixed;#}
+{#    top: 20px;#}
+{#    right: 20px;#}
+{#    padding: 8px 18px;#}
+{#    background: rgba(0,123,255,0.15);#}
+{#    color: #007BFF;#}
+{#    text-decoration: none;#}
+{#    border: 2px solid #007BFF;#}
+{#    border-radius: 30px;#}
+{#    font-size: 14px;#}
+{#    backdrop-filter: blur(6px);#}
+{#    transition: 0.3s;#}
+{#    z-index: 1000;#}
+{#}#}
+{##}
+{#.back-home:hover {#}
+{#    background: rgba(0,123,255,0.35);#}
+{#    transform: scale(1.05);#}
+{#}#}
+{##}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<a href="/temp/teacher/" class="back-home">← Back to Home</a>#}
+{##}
+{#    <center>#}
+{#        <h1>View Videos and Questions</h1>#}
+{#        <table>#}
+{#            <tr>#}
+{#                <th>Subject Name</th>#}
+{#                <th>Topic Name</th>#}
+{#                <th>Upload Videos</th>#}
+{#                <th>Upload Questions</th>#}
+{#            </tr>#}
+{#            {% for i in aa %}#}
+{#            <tr>#}
+{#                <td>{{ i.subjectname }}</td>#}
+{#                <td>{{ i.topicname }}</td>#}
+{#                <td>{{ i.uploadvideo }}</td>#}
+{#                <td>{{ i.uploadquestion }}</td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#        </table>#}
+{#    </center>#}
+{#</body>#}
+{#</html>#}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Videos and Questions</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px 40px;
+        }
+
+        /* Back Button */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 18px;
+            background: #ffffff;
+            color: #007BFF;
+            text-decoration: none;
+            border: 1px solid #007BFF;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .back-home:hover {
+            background: #007BFF;
+            color: white;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+
+        /* Table Card */
+        .table-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #e3edf8;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background-color: #f0f6ff;
+        }
+
+        /* Buttons */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            color: #007BFF;
+            background-color: #e6f2ff;
+            border: 1px solid #007BFF;
+            transition: 0.2s;
+        }
+
+        .action-btn img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .action-btn:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        /* Responsive */
+        @media(max-width:768px){
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+                padding: 10px;
+            }
+
+            td {
+                border: none;
+                padding: 8px 0;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                display: block;
+                color: #007BFF;
+                margin-bottom: 4px;
+            }
+        }
+{#button#}
+        .reply-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.reply-link:hover {
+    background-color: #0056b3;
+}
+    </style>
+</head>
+
+<body>
+
+<a href="/temp/teacher/" class="back-home">← Back to Home</a>
+
+<div class="container">
+
+    <h1>View Videos and Questions</h1>
+
+    <div class="table-card">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Topic Name</th>
+                    <th>Upload Videos</th>
+                    <th>Video Duration</th>
+                    <th>Upload Questions</th>
+
+                    <th>Edit</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for i in aa %}
+                <tr>
+                    <td data-label="Subject Name">{{ i.subjectname }}</td>
+                    <td data-label="Topic Name">{{ i.topicname }}</td>
+
+                    <td data-label="Upload Videos">
+                        <a href="/static/{{ i.uploadvideo }}"
+                           target="_blank"
+                           class="action-btn">
+                            <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Video">
+                            Watch
+                        </a>
+                    </td>
+                    <td data-label="Topic Name">{{ i.duration }}</td>
+
+                    <td data-label="Upload Questions">
+                        <a href="/static/{{ i.uploadquestion }}"
+                           download
+                           class="action-btn">
+                            <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="File">
+                            Download
+                        </a>
+                    </td>
+                   <td><a href="/video_questions/edit/{{ i.video_id}}" class="reply-link">edit</a></td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

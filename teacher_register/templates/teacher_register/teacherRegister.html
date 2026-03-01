@@ -1,0 +1,292 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#	<title></title>#}
+{#</head>#}
+{#<body>#}
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#	<center>#}
+{#		<h1>register teacher</h1>#}
+{#		<table>#}
+{#			<tr>#}
+{#				<td>name</td>#}
+{#				<td><input type="text" name="teachername"></td>#}
+{#			</tr>#}
+{#			<tr>#}
+{#				<td>Username</td>#}
+{#				<td><input type="text" name="username"></td>#}
+{#			</tr>#}
+{#			<tr>#}
+{#				<td>subject</td>#}
+{#				<td><input type="text" name="subject"></td>#}
+{#			</tr>#}
+{#			<tr>#}
+{#				<td>contact</td>#}
+{#				<td><input type="tel" name="contact"></td>#}
+{#			</tr>#}
+{#			<tr>#}
+{#				<td>E-mail</td>#}
+{#				<td><input type="email" name="email"></td>#}
+{#			</tr>#}
+{#			<tr>	#}
+{#				<td>Password</td>#}
+{#				<td><input type="password" name="password"></td>#}
+{#			</tr>#}
+{#			<tr>	#}
+{#				<td>ConfirmPassword</td>#}
+{#				<td><input type="password" name="password"></td>#}
+{#			</tr>#}
+{#			<tr>#}
+{#				<td></td>#}
+{#				<td><input type="submit" value="submit"></td>#}
+{#                <td><input type="reset" value="Reset"></td>#}
+{#			</tr>#}
+{#		</table>#}
+{#	</center>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Teacher</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 600px;
+            padding: 30px 40px;
+            border-radius: 20px;
+            background: rgba(0, 123, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        td {
+            padding: 10px 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #007BFF;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-right: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="reset"] {
+            background-color: #6c757d;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #495057;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: rgba(0, 123, 255, 0.15);
+            color: #007BFF;
+            font-weight: bold;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            transition: 0.3s;
+            z-index: 2;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 123, 255, 0.7);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .msg {
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<a href="/temp/home" class="back-btn">Back to Home</a>
+
+<div class="form-container">
+
+    <form method="post" id="regForm">
+        {% csrf_token %}
+
+        <h1>Register Teacher</h1>
+
+        <table>
+
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="teachername" required></td>
+            </tr>
+
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username" required></td>
+            </tr>
+
+            <tr>
+                <td>Subject</td>
+                <td><input type="text" name="subject" required></td>
+            </tr>
+
+            <tr>
+                <td>Contact</td>
+                <td>
+                    <input type="tel"
+                           name="contact"
+                           pattern="[0-9]{10}"
+                           placeholder="10-digit number"
+                           required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" required></td>
+            </tr>
+
+            <!-- Password -->
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           required
+                           minlength="8"
+                           pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}"
+                           title="Must contain uppercase, lowercase, number & special character">
+                </td>
+            </tr>
+
+            <!-- Confirm Password -->
+            <tr>
+                <td>Confirm Password</td>
+                <td>
+                    <input type="password"
+                           id="confirmPassword"
+                           name="cpassword"
+                           required
+                           minlength="8">
+                    <span id="msg" class="msg"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+</div>
+
+<!-- 🔐 Password Validation -->
+<script>
+    const form = document.getElementById("regForm");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const msg = document.getElementById("msg");
+
+    confirmPassword.addEventListener("keyup", function () {
+        if (password.value.trim() === "") {
+            msg.style.color = "red";
+            msg.innerHTML = "Password cannot be empty";
+            return false;
+        }
+
+        if (confirmPassword.value.trim() === "") {
+            msg.style.color = "red";
+            msg.innerHTML = "Confirm Password cannot be empty";
+            return false;
+        }
+        if (password.value !== confirmPassword.value) {
+            msg.textContent = "❌ Password does not match";
+            msg.style.color = "red";
+        } else {
+            msg.textContent = "✅ Password matched";
+            msg.style.color = "green";
+        }
+    });
+
+    form.addEventListener("submit", function (e) {
+        if (password.value !== confirmPassword.value) {
+            e.preventDefault();
+            alert("❌ Password and Confirm Password do not match!");
+            confirmPassword.focus();
+        }
+    });
+</script>
+
+</body>
+</html>
+
